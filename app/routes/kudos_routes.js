@@ -4,7 +4,7 @@ const express = require('express')
 const passport = require('passport')
 
 // pull in Mongoose model for kudos
-const Kudo = require('../models/kudo')
+const Kudo = require('../models/kudos_routes')
 
 // this is a collection of methods that help us detect situations when we need
 // to throw a custom error

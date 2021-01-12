@@ -4,7 +4,7 @@ const express = require('express')
 const passport = require('passport')
 
 // pull in Mongoose model for kudos
-const Kudo = require('../models/kudos_routes')
+const Kudo = require('./../models/kudo')
 
 // this is a collection of methods that help us detect situations when we need
 // to throw a custom error
@@ -18,7 +18,7 @@ const requireOwnership = customErrors.requireOwnership
 
 // this is middleware that will remove blank fields from `req.body`, e.g.
 // { kudo: { title: '', text: 'foo' } } -> { kudo: { text: 'foo' } }
-const removeBlanks = require('../../lib/remove_blank_fields')
+// const removeBlanks = require('../../lib/remove_blank_fields')
 // passing this as a second argument to `router.<verb>` will make it
 // so that a token MUST be passed for that route to be available
 // it will also set `req.user`
@@ -70,31 +70,37 @@ router.post('/kudos', requireToken, (req, res, next) => {
     // the error handler needs the error message and the `res` object so that it
     // can send an error message back to the client
     .catch(next)
-})
+}),
 
 // UPDATE
 // PATCH /kudos/5a7db6c74d55bc51bdf39793
-router.patch('/kudos/:id', requireToken, removeBlanks, (req, res, next) => {
+router.patch('/kudos/:id', requireToken, (req, res, next) => {
+  console.log(req.body.owner)
   // if the client attempts to change the `owner` property by including a new
   // owner, prevent that by deleting that key/value pair
-  delete req.body.kudo.owner
+  const id = req.params.id
+delete req.body.kudo.owner
+const kudoData = req.body.kudo
+Kudo.findOne({
+_id : id, owne : req.user._id
+})
+  // Kudo.findById(req.params.id) this didnt work 
+// returning error message 504
 
-  Kudo.findById(req.params.id)
     .then(handle404)
-    .then(kudo => {
+    .then(kudo => kudo.updateOne (kudoData))
+    .then(kudo => {res.status(200).json({kudo : kudoData})})
       // pass the `req` object and the Mongoose record to `requireOwnership`
       // it will throw an error if the current user isn't the owner
-      requireOwnership(req, kudo)
+      // requireOwnership(req, kudo)
 
       // pass the result of Mongoose's `.update` to the next `.then`
-      return kudo.updateOne(req.body.kudo)
-    })
+      // return kudo.updateOne(req.body.kudo)
     // if that succeeded, return 204 and no JSON
-    .then(() => res.sendStatus(204))
+   
     // if an error occurs, pass it to the handler
     .catch(next)
 })
-
 // DESTROY
 // DELETE /kudos/5a7db6c74d55bc51bdf39793
 router.delete('/kudos/:id', requireToken, (req, res, next) => {

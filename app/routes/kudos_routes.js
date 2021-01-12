@@ -77,7 +77,7 @@ router.post('/kudos', requireToken, (req, res, next) => {
 
 // UPDATE
 // PATCH /recipes/5a7db6c74d55bc51bdf39793
-router.patch('/kudos/:id', requireToken, removeBlanks, (req, res, next) => {
+router.patch('/kudos/:id', requireToken, (req, res, next) => {
   // if the client attempts to change the `owner` property by including a new
   // owner, prevent that by deleting that key/value pair
   delete req.body.kudo.owner

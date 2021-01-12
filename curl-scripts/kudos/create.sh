@@ -1,5 +1,5 @@
 
-API="http://localhost:4741"
+API="https://frozen-shore-45480.herokuapp.com"
 URL_PATH="/kudos"
 
 curl "${API}${URL_PATH}" \

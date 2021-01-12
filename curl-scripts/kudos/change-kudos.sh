@@ -1,4 +1,4 @@
-curl 'http://localhost:4741/kudos' \
+curl 'https://frozen-shore-45480.herokuapp.com/kudos' \
   --include \
   --request PATCH \
   --header "Content-Type: application/json" \

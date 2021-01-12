@@ -5,7 +5,7 @@ const kudoSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  kudos : {
+  kudo : {
     type: String,
     required: true
   },

@@ -74,30 +74,26 @@ router.post('/kudos', requireToken, (req, res, next) => {
 
 // UPDATE
 // PATCH /kudos/5a7db6c74d55bc51bdf39793
-router.patch('/kudos/:id', requireToken, (req, res, next) => {
-  console.log(req.body.owner)
+
+// UPDATE
+// PATCH /recipes/5a7db6c74d55bc51bdf39793
+router.patch('/kudos/:id', requireToken, removeBlanks, (req, res, next) => {
   // if the client attempts to change the `owner` property by including a new
   // owner, prevent that by deleting that key/value pair
-  const id = req.params.id
-delete req.body.kudo.owner
-const kudoData = req.body.kudo
-Kudo.findOne({
-_id : id, owne : req.user._id
-})
-  // Kudo.findById(req.params.id) this didnt work 
-// returning error message 504
+  delete req.body.kudo.owner
 
+  Kudo.findById(req.params.id)
     .then(handle404)
-    .then(kudo => kudo.updateOne (kudoData))
-    .then(kudo => {res.status(200).json({kudo : kudoData})})
+    .then(kudo => {
       // pass the `req` object and the Mongoose record to `requireOwnership`
       // it will throw an error if the current user isn't the owner
-      // requireOwnership(req, kudo)
+      requireOwnership(req, kudo)
 
       // pass the result of Mongoose's `.update` to the next `.then`
-      // return kudo.updateOne(req.body.kudo)
+      return kudo.updateOne(req.body.kudo)
+    })
     // if that succeeded, return 204 and no JSON
-   
+    .then(() => res.sendStatus(204))
     // if an error occurs, pass it to the handler
     .catch(next)
 })

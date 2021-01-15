@@ -33,7 +33,7 @@ const nonMatchingPasswordsUser = {
   }
 }
 
-let token = 'notrealtoken'
+const token = 'notrealtoken'
 
 describe('Users', () => {
   beforeEach(done => {

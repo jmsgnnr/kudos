@@ -1,17 +1,17 @@
 const mongoose = require('mongoose')
 
 const kudoSchema = new mongoose.Schema({
-  name : {
+  name: {
     type: String,
     required: true
   },
-  kudos : {
+  kudos: {
     type: String,
     required: true
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: 'User'
   }
 }, {
   timestamps: true

@@ -1,13 +1,13 @@
 process.env.TESTENV = true
 
-let Example = require('../app/models/example.js')
-let User = require('../app/models/user')
+const Example = require('../app/models/example.js')
+const User = require('../app/models/user')
 
 const crypto = require('crypto')
 
-let chai = require('chai')
-let chaiHttp = require('chai-http')
-let server = require('../server')
+const chai = require('chai')
+const chaiHttp = require('chai-http')
+const server = require('../server')
 chai.should()
 
 chai.use(chaiHttp)
@@ -33,7 +33,7 @@ describe('Examples', () => {
         userId = user._id
         return user
       })
-      .then(() => Example.create(Object.assign(exampleParams, {owner: userId})))
+      .then(() => Example.create(Object.assign(exampleParams, { owner: userId })))
       .then(record => {
         exampleId = record._id
         done()
@@ -84,7 +84,7 @@ describe('Examples', () => {
     it('must be owned by the user', done => {
       chai.request(server)
         .delete('/examples/' + exampleId)
-        .set('Authorization', `Bearer notarealtoken`)
+        .set('Authorization', 'Bearer notarealtoken')
         .end((e, res) => {
           res.should.have.status(401)
           done()
@@ -114,7 +114,7 @@ describe('Examples', () => {
 
   describe('POST /examples', () => {
     it('should not POST an example without a title', done => {
-      let noTitle = {
+      const noTitle = {
         text: 'Untitled',
         owner: 'fakedID'
       }
@@ -130,7 +130,7 @@ describe('Examples', () => {
     })
 
     it('should not POST an example without text', done => {
-      let noText = {
+      const noText = {
         title: 'Not a very good example, is it?',
         owner: 'fakeID'
       }
@@ -156,7 +156,7 @@ describe('Examples', () => {
     })
 
     it('should POST an example with the correct params', done => {
-      let validExample = {
+      const validExample = {
         title: 'I ran a shell command. You won\'t believe what happened next!',
         text: 'it was rm -rf / --no-preserve-root'
       }
@@ -191,7 +191,7 @@ describe('Examples', () => {
     it('must be owned by the user', done => {
       chai.request(server)
         .patch('/examples/' + exampleId)
-        .set('Authorization', `Bearer notarealtoken`)
+        .set('Authorization', 'Bearer notarealtoken')
         .send({ example: fields })
         .end((e, res) => {
           res.should.have.status(401)

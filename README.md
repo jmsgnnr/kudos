@@ -2,8 +2,8 @@
 ## Links
 
 
-- [Deployed Client]()
-- [Deployed API]()
+- [Deployed Client](https://jmsgnnr.github.io/kudos-client/)
+- [Deployed API](https://frozen-shore-45480.herokuapp.com/)
 - [PosiBot Client Repository](https://github.com/jmsgnnr/kudos-client)
 
 ## Styles

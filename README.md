@@ -1,4 +1,6 @@
 ## Functions
+
+
 ## Links
 
 
@@ -27,10 +29,10 @@ KUDOS update
 
 ## Wireframes/User stories
 
-- As a user, I would like to be able to submit quotes I'd like to view.
-- As a user, I would like to be able to view which quotes I wrote.
-- As a user, I would like to be able to edit my quotes.
-- As a user, I would like to delete  my qutoes.
+- As a user, I would like to be able to submit kudos to view.
+- As a user, I would like to be able to view which kudos I wrote.
+- As a user, I would like to be able to edit my kudos.
+- As a user, I would like to delete  my kudos
 
 
 ### ERD

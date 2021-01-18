@@ -3,8 +3,8 @@ const express = require('express')
 // Passport docs: http://www.passportjs.org/docs/
 const passport = require('passport')
 
-// pull in Mongoose model for kudos
-const Kudo = require('./../models/kudo')
+// pull in Mongoose model for examples
+const Kudo = require('../models/kudo')
 
 // this is a collection of methods that help us detect situations when we need
 // to throw a custom error
@@ -18,7 +18,7 @@ const requireOwnership = customErrors.requireOwnership
 
 // this is middleware that will remove blank fields from `req.body`, e.g.
 // { kudo: { title: '', text: 'foo' } } -> { kudo: { text: 'foo' } }
-// const removeBlanks = require('../../lib/remove_blank_fields')
+const removeBlanks = require('../../lib/remove_blank_fields')
 // passing this as a second argument to `router.<verb>` will make it
 // so that a token MUST be passed for that route to be available
 // it will also set `req.user`
@@ -70,14 +70,11 @@ router.post('/kudos', requireToken, (req, res, next) => {
     // the error handler needs the error message and the `res` object so that it
     // can send an error message back to the client
     .catch(next)
-}),
+})
 
 // UPDATE
 // PATCH /kudos/5a7db6c74d55bc51bdf39793
-
-// UPDATE
-// PATCH /recipes/5a7db6c74d55bc51bdf39793
-router.patch('/kudos/:id', requireToken, (req, res, next) => {
+router.patch('/kudos/:id', requireToken, removeBlanks, (req, res, next) => {
   // if the client attempts to change the `owner` property by including a new
   // owner, prevent that by deleting that key/value pair
   delete req.body.kudo.owner
@@ -97,6 +94,7 @@ router.patch('/kudos/:id', requireToken, (req, res, next) => {
     // if an error occurs, pass it to the handler
     .catch(next)
 })
+
 // DESTROY
 // DELETE /kudos/5a7db6c74d55bc51bdf39793
 router.delete('/kudos/:id', requireToken, (req, res, next) => {

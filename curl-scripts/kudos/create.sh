@@ -1,4 +1,4 @@
-
+# sh /curl-scripts/kudos/create.sh
 API="https://frozen-shore-45480.herokuapp.com"
 URL_PATH="/kudos"
 

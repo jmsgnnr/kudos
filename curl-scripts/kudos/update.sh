@@ -5,8 +5,8 @@ curl "https://frozen-shore-45480.herokuapp.com/kudos/${ID}" \
   --header "Authorization: Bearer ${TOKEN}" \
   --data '{
     "kudo": {
-      "kudos": "'"${KUDOS}"'",
-      "newKudos": "'"${NEWKUDOS}"'"
+      "name": "'"${NAME}"'",
+      "kudos": "'"${KUDOS}"'"
     }
   }'
 

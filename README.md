@@ -27,7 +27,7 @@ First steps were launching my application on heroku and establishing working cur
 
 ### ERD
 
-![Venue Database ERD](https://files.slack.com/files-pri/T0351JZQ0-F01KPJCHMPC/image_from_ios.jpg)
+-[Venue Database ERD](https://files.slack.com/files-pri/T0351JZQ0-F01KPJCHMPC/image_from_ios.jpg)
 
 
 

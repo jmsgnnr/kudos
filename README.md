@@ -8,7 +8,6 @@ First steps were launching my application on heroku and establishing working cur
 - [Deployed API](https://frozen-shore-45480.herokuapp.com/)
 - [PosiBot Client Repository](https://github.com/jmsgnnr/kudos-client)
 
-## Styles
 
 ## Technologies used 
 

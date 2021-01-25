@@ -1,5 +1,5 @@
 ## Development process
-First steps were launching my application on heroku and establishing working curl requests, and setting a working route for my token authority(USER). I knew I had to establish a working model/route for a new created resource, in this istance kudos. Kudos will be fed on my front end, into an array, that is randomly iterated through using JS functions on the front end, and read in HTML to the user. 
+First steps were launching my application on heroku and establishing working RESTful routes for a new resource(kudos), that would be accesible via a signed-in user. I knew I had to establish a working model/route for a new created resource, testing the functionality via curl-scripts in the terminal. My kudos will be fed on my front end, into an array, that is iterated through using JS functions on the front end, randomly selecting one piece of data (kudos) and returning via HTML in text to the user. 
 
 ## Links
 
@@ -28,6 +28,9 @@ First steps were launching my application on heroku and establishing working cur
 
 -[Venue Database ERD](https://files.slack.com/files-pri/T0351JZQ0-F01KPJCHMPC/image_from_ios.jpg)
 
+# Unsolved problems
+
+- I'd like to implement a pre existing array of motivational quotes, links to de-stress in future iterations!
 
 
 
